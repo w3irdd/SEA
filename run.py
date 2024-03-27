@@ -10,14 +10,11 @@ new_column_names = {
     "text": "Описание"
 }
 
-config = dataparse.parse_json_to_dict("../config/config.json")
-mailing_is_enabled = config["mailing_is_enabled"]
-
 args = dataparse.parse_arguments()
 input_file = args.input_file
 print(f"The input file is: {input_file}")
 
-output_dir = '../data'
+output_dir = 'data'
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
 
@@ -26,7 +23,7 @@ output_file_xlsx = os.path.join(output_dir, 'events.xlsx')
 
 writer = pd.ExcelWriter(output_file_xlsx, engine='xlsxwriter')
 
-ip_whitelist = dataparse.parse_ip_file("../config/filtered_addresses.txt") 
+ip_whitelist = dataparse.parse_ip_file("config/filtered_addresses.txt") 
 
 json_list = dataparse.csv_to_json_list(input_file, ip_whitelist)
 
